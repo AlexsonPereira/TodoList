@@ -21,10 +21,10 @@ export const TodoProvider = ({children}) => {
       e.preventDefault()
       setList([...list,{
         id : `${text}${list.length+1}`,
-        todo: text
+        todo: text,
+        check : false,
       }])
       setText("")
-      localStorage.setItem("@itens",JSON.stringify(list))
    }
 
    const deleteTodo = (id) => {
@@ -32,8 +32,14 @@ export const TodoProvider = ({children}) => {
       setList(listFiltred)
    }
 
+   const setCheck = (id) => {
+      const index = list.findIndex(e => e.id === id)
+      list[index].check = !list[index].check
+      setList([...list])
+    }
+
    return (
-      <TodoContext.Provider value={{text,setText,deleteTodo,addTodo,list,setList}}>
+      <TodoContext.Provider value={{text,setText,deleteTodo,addTodo,list,setList,setCheck}}>
          {children}
       </TodoContext.Provider>
    )

@@ -10,7 +10,7 @@ export const HomePage = ({}) => {
          <TodoList>
             <InsertInput/>
             <ul>
-               {list && list.map(e => <Item name={e.todo} key={e.id} id={e.id} />)}
+               {list && list.map(e => <Item name={e.todo} key={e.id} id={e.id} check={e.check} />)}
             </ul>
          </TodoList>
    )
